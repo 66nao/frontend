@@ -29,13 +29,12 @@
   "boss": false,
   "debug": false,
   "eqnull": false,
-  "es5": true,
   "esnext": false,
   "moz": false,
   "evil": false,
   "expr": false,
   "funcscope": false,
-  "globalstrict": false,
+  "globalstrict": true,
   "iterator": false,
   "lastsemic": false,
   "laxbreak": false,
@@ -70,5 +69,10 @@
   "worker": false,
   "wsh": false,
   "yui": false,
-  "globals": {}
+  "globals": {
+    "coolie": true,
+    "module": true,
+    "define": true,
+    "exports": true
+  }
 }

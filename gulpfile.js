@@ -1,70 +1,73 @@
 var gulp = require('gulp'),
+  fs = require('fs'),
+  fsExtra = require('fs-extra'),
+  path = require('path'),
   jshint = require('gulp-jshint'),
   stylint = require('gulp-stylint'),
   stylus = require('gulp-stylus'),
   watch = require('gulp-watch'),
-  gutil = require('gulp-util'),
   browsersync = require('browser-sync').create(),
   reload = browsersync.reload,
-  plumber = require('gulp-plumber'),
-  notify = require("gulp-notify"),
-  htmlInjector = require("bs-html-injector");
+  plumber = require('gulp-plumber');
 
+// 源文件路径
 var src = {
-  stylus: 'src/static/stylus/*/*.styl',
-  js: 'src/static/js/*/*.js',
-  html: 'src/page/*/*.html'
+  stylus: 'src/static/stylus/**/*.styl',
+  js: 'src/static/js/**/*.js',
+  html: 'src/view/**/*.html'
 };
 
+// 编译后的文件路径
 var compile = {
   js: 'src/static/js',
   css: 'src/static/css'
 };
 
-gulp.task('hint-js', function() {
+// js文件检查任务
+gulp.task('js', function() {
   return gulp.src(src.js)
-    .pipe(plumber({errorHandler: notify.onError('Js hint error: <%= error.message %>')}))
     .pipe(jshint())
     .pipe(jshint.reporter());
 });
 
-gulp.task('lint-stylus', function () {
-  return gulp.src(src.stylus)
-    .pipe(plumber({errorHandler: notify.onError('Stylus lint error: <%= error.message %>')}))
-    .pipe(stylint())
-    .pipe(stylint.reporter());
-});
-
-gulp.task('js', function () {
-  return gulp.src(src.js)
-    .pipe(reload());
-});
-
+// stylus代码检查、自动编译、自动注入任务
 gulp.task('stylus', function () {
   return gulp.src(src.stylus)
-    .pipe(plumber({errorHandler: notify.onError('Stylus compile error: <%= error.message %>')}))
+    .pipe(plumber())
+    .pipe(stylint())
+    .pipe(stylint.reporter())
     .pipe(stylus())
     .pipe(gulp.dest(compile.css))
     .pipe(reload({stream: true}));
 });
 
-gulp.task('watch', function () {
-  gulp.watch(src.stylus, ['lint-stylus', 'stylus']);
-  gulp.watch(src.js, ['hint-js', 'js']);
-  gulp.watch(src.html).on("change", reload);
+// 监控任务，当删除源码时同时删除掉编译的对应文件
+gulp.task('watch', function(done) {
+  gulp.watch(src.js, gulp.series('js'));
+  gulp.watch(src.stylus, gulp.series('stylus'))
+    .on('unlink', function(filepath) {
+      console.log('path: %', filepath);
+      var toRemoveFilePath = path.resolve(filepath.replace('stylus', 'css').replace('.styl', '.css'));
+      fs.exists(toRemoveFilePath, function (exists) {
+        if (exists) {
+          fs.unlink(toRemoveFilePath, function() {
+            done();
+          });
+        }
+      });
+    })
+    .on('unlinkDir', function(filedir) {
+      console.log('dir: %s', filedir);
+      fsExtra.remove(filedir.replace('stylus', 'css'), function() {
+        done();
+      });
+    });
 });
 
+// 浏览器自动刷新
 gulp.task('browser-sync', function () {
-  browsersync.use(htmlInjector, {
-    files: src.html
-  });
   browsersync.init({server: './src'});
 });
 
-gulp.task('dev1', ['hint-js', 'lint-stylus', 'stylus', 'watch', 'browser-sync'], function () {
-  console.log('started in dev mode.');
-});
-
-gulp.task('dev', ['lint-stylus', 'browser-sync'], function () {
-  console.log('started in dev mode.');
-});
+// 开发任务集合
+gulp.task('dev', gulp.series(gulp.parallel('stylus', 'js'), gulp.parallel('watch', 'browser-sync')));

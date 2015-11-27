@@ -20,14 +20,11 @@
   "devDependencies": {
     "browser-sync": "^2.10.0",
     "bs-html-injector": "^2.0.4",
-    "gulp": "^3.9.0",
+    "gulp": "gulpjs/gulp#4.0",
     "gulp-jshint": "^2.0.0",
-    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-stylint": "^3.0.0",
     "gulp-stylus": "^2.1.0",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
     "jshint": "^2.8.0"
   }
 }
