@@ -3,6 +3,7 @@
  */
 'use strict';
 define(function (require) {
-  require('./static/js/test/test.js')();
+  require('./static/js/test/test')();
+  require('./static/js/t/t')();
   alert('hello world');
 });

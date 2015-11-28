@@ -4,7 +4,9 @@
 
 'use strict';
 define(function (require, exports, module) {
-    module.exports = function() {
-      alert('this is a test');
-    };
+  require('../core/a')();
+  require('../core/b')();
+  module.exports = function() {
+    alert('this is a test');
+  };
 });

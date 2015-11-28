@@ -18,8 +18,8 @@ PhpStorm的安装文件在[共享网盘](//192.168.10.250/share/devtools)里面�
 - `coffeescript-idea`
 ## 工具配置和介绍
 可参考[云淡然的系列文章](http://frontenddev.org/article/webstorm-portal-1-subject-and-match-colors.html)。
-- 点击`Settings` -> `Editor` -> `Code Style`，修改前端文件`css`,`javascript`,`html`,`CoffeeScript`,`JSON`,`Stylus`等文件的`Tab adn Indents`全部为2。并且不要勾选`Use tab character`。
+- 点击`Settings` -> `Editor` -> `Code Style`，取消`Use tab character`，`Detect and use existing file indents for editing`和`Show notifications about detected indents`的勾选。
+在子项中，修改前端文件`css`,`javascript`,`html`,`CoffeeScript`,`JSON`,`Stylus`等文件的`Tab adn Indents`全部为2，不修改也没关系，在使用`EditorConfig`后会覆盖默认设置。
 - 点击`Settings` -> `Languages & Frameworks` -> `JavaScript` -> `Libraries`添加项目所用的库文件。
 - 点击`Settings` -> `Languages & Frameworks` -> `JavaScript` -> `Code Quality Tools` -> `JSHint`，勾选`Enable`,`Use config files`，启用目录里面的JSHint配置。
-- 取消`Editor` -> `Code Style`里面的`Detect and use existing file indents for editing`和`Show notifications about detected indents`的勾选。
 - 点击`Settings` -> `Editor` -> `Appearance`，勾选上右侧的`Show line numbers`。

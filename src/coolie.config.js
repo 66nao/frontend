@@ -25,7 +25,7 @@ module.exports = function (coolie) {
       // js 文件保存目录
       dest: './static/js',
       // 分块配置
-      chunk: []
+      chunk: ['./static/js/core/*.js']
     },
 
     // html 构建
