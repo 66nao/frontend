@@ -5,7 +5,6 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   stylint = require('gulp-stylint'),
   stylus = require('gulp-stylus'),
-  watch = require('gulp-watch'),
   browsersync = require('browser-sync').create(),
   reload = browsersync.reload,
   plumber = require('gulp-plumber');
@@ -71,3 +70,52 @@ gulp.task('browser-sync', function () {
 
 // 开发任务集合
 gulp.task('dev', gulp.series(gulp.parallel('stylus', 'js'), gulp.parallel('watch', 'browser-sync')));
+
+
+
+// 复制NPM包到开发目录
+gulp.task('copy-dependence', function(done) {
+  var dependence = require('./dependence.json');
+  var prefixDependence = './node_modules',
+    prefixLib = './src/static/js/lib';
+  for (var d in dependence) {
+    if (dependence.hasOwnProperty(d)) {
+      // npm源文件的路径和要拷贝到到路径
+      var srcPath = path.resolve(prefixDependence, dependence[d]),
+        destPath = path.resolve(prefixLib, d);
+      // 检查源文件的读写权限
+      var stat;
+      try {
+        stat = fs.statSync(srcPath);
+        if (!stat.isFile()) {
+          console.error('路径%s不是一个文件，请检查配置文件dependence.json。', dependence[d]);
+          break;
+        }
+      } catch (e) {
+        console.error('npm源文件%s读写错误，检查文件是否存在，配置文件dependence.json是否出错。', srcPath);
+        break;
+      }
+      // 检查目标目录的读写权限
+      try {
+        stat = fs.statSync(destPath);
+        if (!stat.isDirectory()) {
+          try {
+            fs.mkdirSync(destPath);
+          } catch (e) {
+            console.error('创建目标目录%s失败，请检查目录读写权限。', destPath);
+          }
+        }
+      } catch (e) {
+        console.error('%s目录读写错误，请检查目录读写权限。', prefixLib);
+        break;
+      }
+      // 拷贝文件
+      try {
+        fsExtra.copySync(srcPath, destPath);
+      } catch (e) {
+        console.error('文件拷贝错误，请检查文件和目录的读写权限。%s --> %s', srcPath, destPath);
+      }
+    }
+  }
+  done();
+});
