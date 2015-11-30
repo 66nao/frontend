@@ -18,4 +18,4 @@ node_modules
 npm-debug.log
 
 # 构建后的文件目录
-dest
+# dest

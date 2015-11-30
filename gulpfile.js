@@ -77,12 +77,19 @@ gulp.task('dev', gulp.series(gulp.parallel('stylus', 'js'), gulp.parallel('watch
 gulp.task('copy-dependence', function(done) {
   var dependence = require('./dependence.json');
   var prefixDependence = './node_modules',
-    prefixLib = './src/static/js/lib';
+    prefixDest = './src';
   for (var d in dependence) {
     if (dependence.hasOwnProperty(d)) {
       // npm源文件的路径和要拷贝到到路径
-      var srcPath = path.resolve(prefixDependence, dependence[d]),
-        destPath = path.resolve(prefixLib, d);
+      if (typeof dependence[d] === "string") {
+        dependence[d] = {
+          type: 'js',
+          src: dependence[d]
+        }
+      }
+      var srcPath = path.join(prefixDependence, dependence[d].src),
+        destParentPath = path.join(prefixDest, '/static', dependence[d].type),
+        destPath = path.join(destParentPath, '/lib/', d);
       // 检查源文件的读写权限
       var stat;
       try {
@@ -95,23 +102,10 @@ gulp.task('copy-dependence', function(done) {
         console.error('npm源文件%s读写错误，检查文件是否存在，配置文件dependence.json是否出错。', srcPath);
         break;
       }
-      // 检查目标目录的读写权限
-      try {
-        stat = fs.statSync(destPath);
-        if (!stat.isDirectory()) {
-          try {
-            fs.mkdirSync(destPath);
-          } catch (e) {
-            console.error('创建目标目录%s失败，请检查目录读写权限。', destPath);
-          }
-        }
-      } catch (e) {
-        console.error('%s目录读写错误，请检查目录读写权限。', prefixLib);
-        break;
-      }
       // 拷贝文件
       try {
         fsExtra.copySync(srcPath, destPath);
+        console.info('已完成依赖复制。%s --> %s', srcPath, destPath);
       } catch (e) {
         console.error('文件拷贝错误，请检查文件和目录的读写权限。%s --> %s', srcPath, destPath);
       }

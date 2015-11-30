@@ -27,6 +27,8 @@
     "gulp-stylus": "^2.1.0"
   },
   "dependencies": {
-    "vue": "^1.0.10"
+    "normalize.css": "^3.0.3",
+    "vue": "^1.0.10",
+    "vue-router": "vuejs/vue-router#dev"
   }
 }

@@ -1,3 +1,8 @@
 {
-  "vue": "vue/dist/vue.js"
+  "normalize.css": {
+    "type": "css",
+    "src": "normalize.css/normalize.css"
+  },
+  "vue.js": "vue/dist/vue.js",
+  "vue-router.js": "vue-router/dist/vue-router.js"
 }
