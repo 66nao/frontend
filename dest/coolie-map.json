@@ -1,0 +1,36 @@
+{
+  "/index.html": {
+    "main": [
+      {
+        "src": "/index.js",
+        "dest": "../dest/static/js/47d9d91ab625a004.js",
+        "deps": [
+          "/static/js/test/test.js",
+          "/static/js/core/a.js",
+          "/static/js/core/b.js",
+          "/static/js/t/t.js",
+          "/static/js/core/c.js"
+        ]
+      }
+    ],
+    "async": [],
+    "js": [],
+    "css": [
+      {
+        "dest": "../dest/static/css/2f9d26faa2df4a0a.css",
+        "deps": [
+          {
+            "src": "/static/css/test/test.css",
+            "res": []
+          }
+        ]
+      }
+    ]
+  },
+  "/view/test/test.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  }
+}
