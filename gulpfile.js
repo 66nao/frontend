@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 var src = {
   stylus: 'src/static/stylus/**/*.styl',
   js: 'src/static/js/**/*.js',
-  html: 'src/view/**/*.html'
+  html: ['src/index.html', 'src/view/**/*.html']
 };
 
 // 编译后的文件路径
@@ -43,6 +43,9 @@ gulp.task('stylus', function () {
 // 监控任务，当删除源码时同时删除掉编译的对应文件
 gulp.task('watch', function(done) {
   gulp.watch(src.js, gulp.series('js'));
+  gulp.watch(src.html, function() {
+    console.log(1)
+  });
   gulp.watch(src.stylus, gulp.series('stylus'))
     .on('unlink', function(filepath) {
       console.log('path: %', filepath);
@@ -65,7 +68,7 @@ gulp.task('watch', function(done) {
 
 // 浏览器自动刷新
 gulp.task('browser-sync', function () {
-  browsersync.init({server: './src'});
+  browsersync.init({proxy: 'localhost:9200'});
 });
 
 // 开发任务集合

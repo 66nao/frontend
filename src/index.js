@@ -5,7 +5,17 @@
 define(function (require) {
   // 定义组件
   var Welcome = Vue.extend({
-    template: '<p>Welcome!</p>'
+    template: '<p>Welcome!</p>',
+    route: {
+      activate: function (transition) {
+        console.log('hook-example activated!');
+        transition.next()
+      },
+      deactivate: function (transition) {
+        console.log('hook-example deactivated!');
+        transition.next()
+      }
+    }
   });
 
   var Table = Vue.extend({
@@ -18,7 +28,9 @@ define(function (require) {
 
   // 创建一个路由器实例
   // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
-  var router = new VueRouter();
+  var router = new VueRouter({
+    history: true
+  });
 
   // 定义路由规则
   // 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
