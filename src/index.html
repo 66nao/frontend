@@ -4,11 +4,46 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <!-- coolie -->
-  <link rel="stylesheet" href="./static/css/test/test.css">
+  <link rel="stylesheet" href="./static/css/lib/normalize.css">
+  <link rel="stylesheet" href="./static/css/core/header.css">
+  <link rel="stylesheet" href="./static/css/core/section.css">
+  <link rel="stylesheet" href="./static/css/core/nav.css">
+  <link rel="stylesheet" href="./static/css/core/content.css">
+  <link rel="stylesheet" href="./static/css/core/footer.css">
   <!-- /coolie -->
 </head>
-<body>
-  <div id="header">1123</div>
+<body id="app">
+  <header>header</header>
+  <section>
+    <nav>
+      <ul>
+        <li><a v-link="{path: '/welcome'}">Welcome</a></li>
+        <li><a v-link="{path: '/table'}">Table</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+        <li><a href="#">menu1</a></li>
+        <li><a href="#">menu2</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+        <li><a href="#">menu1</a></li>
+        <li><a href="#">menu2</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+      </ul>
+    </nav>
+    <div id="content">
+      <router-view></router-view>
+    </div>
+  </section>
+  <footer>footer</footer>
+
+  <!-- coolie -->
+  <script src="./static/js/lib/vue.js"></script>
+  <script src="./static/js/lib/vue-router.js"></script>
+  <!-- /coolie -->
   <script coolie src="./coolie.min.js" data-config="./coolie-config.js" data-main="index.js"></script>
 </body>
 </html>
