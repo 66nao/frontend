@@ -4,5 +4,6 @@
     "src": "normalize.css/normalize.css"
   },
   "vue.js": "vue/dist/vue.js",
+  "vue-resource.js": "vue-resource/dist/vue-resource.js",
   "vue-router.js": "vue-router/dist/vue-router.js"
 }
