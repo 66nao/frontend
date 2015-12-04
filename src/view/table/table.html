@@ -1,0 +1,29 @@
+<form class="pure-form">
+  <input type="text" v-model="search" placeholder="请输入搜索内容">
+</form>
+<table class="pure-table">
+  <thead>
+  <tr>
+    <td>#</td>
+    <td class="sortable" width="120">
+      <span class="text">姓名</span>
+      <span class="fa fa-angle-up upper" @click="fOrder('name',1)"></span>
+      <span class="fa fa-angle-down down" @click="fOrder('name',-1)"></span>
+    </td>
+    <td class="sortable" width="60">
+      <span class="text">分数</span>
+      <span class="fa fa-angle-up upper" @click="fOrder('score',1)"></span>
+      <span class="fa fa-angle-down down" @click="fOrder('score',-1)"></span>
+    </td>
+    <td>评价</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr v-for="student in students | filterBy search | orderBy orderBy orderReverse">
+    <td>{{$index+1}}</td>
+    <td>{{student.name}}</td>
+    <td>{{student.score}}</td>
+    <td>{{student.score | evaluation}}</td>
+  </tr>
+  </tbody>
+</table>
