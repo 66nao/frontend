@@ -12,10 +12,14 @@ define(function (require) {
 
   router.map({
     '/welcome': {
-      component: require('./static/js/welcome/welcome.js')
+      component: function(resolve) {
+        require.async('./static/js/welcome/welcome.js', resolve)
+      }
     },
     '/table': {
-      component: require('./static/js/table/table.js')
+      component: function(resolve) {
+        require.async('./static/js/table/table.js', resolve)
+      }
     }
   });
 
