@@ -86,15 +86,12 @@
     };
 
     $private.objectToQueryString = function objectToQueryString( data ) {
-      return $private.isObject( data )
-        ? $private.getQueryString( data )
-        : data;
+      return $private.isObject( data ) ? $private.getQueryString( data ) : data;
     };
 
     $private.getQueryString = function getQueryString( object ) {
       return Object.keys( object ).map( function( item ) {
-        return encodeURIComponent( item )
-          + '=' + encodeURIComponent( object[ item ] );
+        return encodeURIComponent( item ) + '=' + encodeURIComponent( object[ item ] );
       }).join( '&' );
     };
 
