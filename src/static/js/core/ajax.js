@@ -1,106 +1,144 @@
-;(function( root, factory ) {
+/**
+ * Ajax异步请求模块，支持全局的请求前拦截、全局的错误返回拦截、链式的请求书写方法
+ * Ajax.beforeEach = function(xhr) {
+ *   xhr.setRequestHeader('Authorization', 'Basic xxxxxx')
+ * }}
+ * Ajax.responseError = function(data, xhr) {
+ *    console.log(xhr.status);
+ * }
+ * Ajax.get('')
+ *   .set('Content-Type', 'application/json')
+ *   .done(function(data, xhr) {console.log('done: ', data)})
+ *   .error(function(data, xhr) {console.log('error: ', data)})
+ *   .always(function(data, xhr) {console.log('always: ', data)})
+ *   .send();
+ * Ajax.post('');
+ * Ajax.put('');
+ * Ajax.delete('');
+ * @author guozhiqiang
+ * @version 0.1.0
+ */
+;(function (root, factory) {
   'use strict';
-  if( typeof define === 'function' && define.amd ) {
-    define( 'Ajax', factory );
+  if (typeof define === 'function' && define.cmd) {
+    define('Ajax', factory);
   }
-  else if( typeof exports === 'object' ) {
+  else if (typeof exports === 'object') {
     exports = module.exports = factory();
   }
   else {
     root.Ajax = factory();
   }
-})(this, function() {
+})(window, function () {
   'use strict';
-
-  function Ajax() {
-    var $public = {};
-    var $private = {};
-
-    $private.methods = {
-      done: function() {},
-      error: function() {},
-      always: function() {}
+  // 链式方法，包括后面的set send
+  var promiseMethods = {
+    done: function () {
+    },
+    error: function () {
+    },
+    always: function () {
+    }
+  };
+  // 准备发送异步请求
+  var request = function (type, url, data) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(type, url || '', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    var promises = promise();
+    // 链式set方法，设置请求头信息
+    promises.set = function(key, value) {
+      xhr.setRequestHeader(key, value);
+      return promises;
     };
-
-    $public.get = function get( url ) {
-      return $private.XHRConnection( 'GET', url, null );
-    };
-
-    $public.post = function post( url, data ) {
-      return $private.XHRConnection( 'POST', url, data );
-    };
-
-    $public.put = function put( url, data ) {
-      return $private.XHRConnection( 'PUT', url, data );
-    };
-
-    $public.delete = function del( url, data ) {
-      return $private.XHRConnection( 'DELETE', url, data );
-    };
-
-    $private.XHRConnection = function XHRConnection( type, url, data ) {
-      var xhr = new XMLHttpRequest();
-      var contentType = 'application/x-www-form-urlencoded';
-      xhr.open( type, url || '', true );
-      xhr.setRequestHeader( 'Content-Type', contentType );
-      xhr.addEventListener( 'readystatechange', $private.ready, false );
-      xhr.send( $private.objectToQueryString( data ) );
-      return $private.promises();
-    };
-
-    $private.ready = function ready() {
-      var xhr = this;
-      var DONE = 4;
-      if( xhr.readyState === DONE ) {
-        xhr.removeEventListener( 'readystatechange', $private.ready, false );
-        $private.methods.always
-          .apply( $private.methods, $private.parseResponse( xhr ) );
-        if( xhr.status >= 200 && xhr.status < 300 ) {
-          return $private.methods.done
-            .apply( $private.methods, $private.parseResponse( xhr ) );
-        }
-        $private.methods.error
-          .apply( $private.methods, $private.parseResponse( xhr ) );
+    // 开始发送异步请求
+    promises.send = function () {
+      // 任意请求前执行拦截操作
+      if (isFunction(Ajax.beforeEach)) {
+        Ajax.beforeEach(xhr);
       }
+      xhr.addEventListener('readystatechange', ready, false);
+      xhr.send(objectToQueryString(data));
+      return promises;
     };
-
-    $private.parseResponse = function parseResponse( xhr ) {
-      var result;
-      try { result = JSON.parse( xhr.responseText ); }
-      catch( e ) { result = xhr.responseText; }
-      return [ result, xhr ];
+    return promises;
+  };
+  // 解析请求的返回信息
+  var parse = function parse(xhr) {
+    var result;
+    try {
+      result = JSON.parse(xhr.responseText);
+    } catch (e) {
+      result = xhr.responseText;
+    }
+    return [result, xhr];
+  };
+  // 请求后的回调
+  var ready = function () {
+    var xhr = this;
+    var DONE = 4;
+    if (xhr.readyState === DONE) {
+      xhr.removeEventListener('readystatechange', ready, false);
+      var jsonResult = parse(xhr);
+      if (xhr.status >= 200 && xhr.status < 300) {
+        promiseMethods.done.apply(promiseMethods, jsonResult);
+      } else {
+        // 所有的错误请求都可以拦截
+        if (isFunction(Ajax.responseError)) {
+          Ajax.responseError.apply(Ajax, jsonResult);
+        }
+        promiseMethods.error.apply(promiseMethods, jsonResult);
+      }
+      promiseMethods.always.apply(promiseMethods, jsonResult);
+    }
+  };
+  // promise模块
+  var promise = function () {
+    var allPromises = {};
+    Object.keys(promiseMethods).forEach(function (promise) {
+      allPromises[promise] = generatePromise.call(this, promise);
+    }, this);
+    return allPromises;
+  };
+  // 生成promise
+  var generatePromise = function generatePromise(method) {
+    return function (callback) {
+      promiseMethods[method] = callback;
+      return this;
     };
-
-    $private.promises = function promises() {
-      var allPromises = {};
-      Object.keys( $private.methods ).forEach(function( promise ) {
-        allPromises[ promise ] = $private.generatePromise.call( this, promise );
-      }, this );
-      return allPromises;
-    };
-
-    $private.generatePromise = function generatePromise( method ) {
-      return function( callback ) {
-        return ( $private.methods[ method ] = callback, this );
-      };
-    };
-
-    $private.objectToQueryString = function objectToQueryString( data ) {
-      return $private.isObject( data ) ? $private.getQueryString( data ) : data;
-    };
-
-    $private.getQueryString = function getQueryString( object ) {
-      return Object.keys( object ).map( function( item ) {
-        return encodeURIComponent( item ) + '=' + encodeURIComponent( object[ item ] );
-      }).join( '&' );
-    };
-
-    $private.isObject = function isObject( data ) {
-      return '[object Object]' === Object.prototype.toString.call( data );
-    };
-
-    return $public;
-  }
-
+  };
+  // 将请求的数据转为查询字符串
+  var objectToQueryString = function objectToQueryString(data) {
+    return isObject(data) ? getQueryString(data) : data;
+  };
+  // url拼接
+  var getQueryString = function getQueryString(object) {
+    return Object.keys(object).map(function (item) {
+      return encodeURIComponent(item) + '=' + encodeURIComponent(object[item]);
+    }).join('&');
+  };
+  var isObject = function isObject(data) {
+    return '[object Object]' === Object.prototype.toString.call(data);
+  };
+  var isFunction = function isFunction(func) {
+    return typeof func === 'function';
+  };
+  // 对外暴露的对象
+  var Ajax = {
+    beforeEach: null,
+    responseError: null,
+    get: function (url) {
+      return request('GET', url, null);
+    },
+    post: function (url, data) {
+      return request('POST', url, data);
+    },
+    put: function (url, data) {
+      return request('PUT', url, data);
+    },
+    delete: function (url, data) {
+      return request('DELETE', url, data);
+    }
+  };
   return Ajax;
 });

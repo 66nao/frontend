@@ -27,7 +27,6 @@
     "gulp-stylus": "^2.1.0"
   },
   "dependencies": {
-    "normalize.css": "^3.0.3",
     "promis": "bramstein/promis",
     "purecss": "^0.6.0",
     "vue": "^1.0.10",

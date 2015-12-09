@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <!-- coolie -->
-  <link rel="stylesheet" href="./static/css/lib/normalize.css">
+  <link rel="stylesheet" href="./static/css/lib/pure.css">
 
   <link rel="stylesheet" href="./static/css/core/header.css">
   <link rel="stylesheet" href="./static/css/core/section.css">
@@ -18,10 +18,10 @@
   <section>
     <nav>
       <ul>
-        <li><a v-link="{path: '/welcome'}">Welcome</a></li>
-        <li><a v-link="{path: '/table'}">Table</a></li>
-        <li><a href="#">menu3</a></li>
-        <li><a href="#">menu4</a></li>
+        <li><a v-link="/">Welcome</a></li>
+        <li><a v-link="/table">Table</a></li>
+        <li><a v-link="/login">Login</a></li>
+        <li><a v-link="/need-auth">Need Auth</a></li>
         <li><a href="#">menu5</a></li>
         <li><a href="#">menu1</a></li>
         <li><a href="#">menu2</a></li>
@@ -45,7 +45,7 @@
   <script src="./static/js/lib/vue.js"></script>
   <script src="./static/js/lib/vue-router.js"></script>
   <script src="./static/js/lib/promise.js"></script>
-  <script src="./static/js/core/request.js"></script>
+  <script src="./static/js/core/ajax.js"></script>
   <!-- /coolie -->
   <script coolie src="./coolie.min.js" data-config="./coolie-config.js" data-main="index.js"></script>
 </body>

@@ -1,7 +1,7 @@
 {
-  "normalize.css": {
+  "pure.css": {
     "type": "css",
-    "src": "normalize.css/normalize.css"
+    "src": "purecss/build/pure.css"
   },
   "vue.js": "vue/dist/vue.js",
   "vue-router.js": "vue-router/dist/vue-router.js",

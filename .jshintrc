@@ -74,6 +74,7 @@
     "module": true,
     "define": true,
     "exports": true,
-    "Vue": true
+    "Vue": true,
+    "Ajax": true
   }
 }
