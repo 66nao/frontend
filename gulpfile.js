@@ -68,7 +68,13 @@ gulp.task('watch', function(done) {
 
 // 浏览器自动刷新
 gulp.task('browser-sync', function () {
-  browsersync.init({proxy: 'localhost:9200'});
+  browsersync.init({
+    proxy: 'localhost:9200',
+    port: 3111,
+    ui: {
+      port: 8181
+    }
+  });
 });
 
 // 开发任务集合
