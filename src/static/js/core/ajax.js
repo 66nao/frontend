@@ -1,5 +1,6 @@
 /**
  * Ajax异步请求模块，支持全局的请求前拦截、全局的错误返回拦截、链式的请求书写方法
+ * 参照：https://github.com/fdaciuk/ajax/blob/master/src/ajax.js
  * Ajax.beforeEach = function(xhr) {
  *   xhr.setRequestHeader('Authorization', 'Basic xxxxxx')
  * }}

@@ -8,7 +8,8 @@ define(function (require) {
   var App = Vue.extend({});
 
   var router = new VueRouter({
-    history: true
+    history: true,
+    transitionOnLoad: true
   });
   // 每次路由跳转之前判断下一个路由是否需要认证，如果需要认证再进行身份认证，判断身份认证是否通过
   router.beforeEach(function(transition) {
@@ -37,6 +38,11 @@ define(function (require) {
   };
   // 路由匹配规则
   router.map({
+    '*': {
+      component: {
+        template: 'page not found.'
+      }
+    },
     '/': {
       component: function(resolve) {
         require.async('./static/js/welcome/welcome.js', resolve)
@@ -46,8 +52,20 @@ define(function (require) {
       component: function(resolve) {
         require.async('./static/js/table/table.js', resolve)
       }
+    },
+    '/login': {
+      component: function(resolve) {
+        require.async('./static/component/auth/login.js', resolve)
+      }
+    },
+    '/need-auth': {
+      component: function(resolve) {
+        require.async('./static/js/auth/need-auth.js', resolve)
+      },
+      auth: true
     }
   });
-
+  // 暴露router
+  window.$router = router;
   router.start(App, '#app');
 });

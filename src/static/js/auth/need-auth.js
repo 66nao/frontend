@@ -5,6 +5,6 @@
 'use strict';
 define(function (require, exports, module) {
   module.exports = {
-    template: require()
+    template: require('./need-auth.html', 'html')
   };
 });
