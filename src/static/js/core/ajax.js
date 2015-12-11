@@ -42,9 +42,9 @@
     }
   };
   // 准备发送异步请求
-  var request = function (type, url, data) {
+  var request = function (type, url, data, async) {
     var xhr = new XMLHttpRequest();
-    xhr.open(type, url || '', true);
+    xhr.open(type, url || '', async !== false);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     var promises = promise();
     // 链式set方法，设置请求头信息
@@ -128,17 +128,17 @@
   var Ajax = {
     beforeEach: null,
     responseError: null,
-    get: function (url) {
-      return request('GET', url, null);
+    get: function (url, async) {
+      return request('GET', url, null, async);
     },
-    post: function (url, data) {
-      return request('POST', url, data);
+    post: function (url, data, async) {
+      return request('POST', url, data, async);
     },
-    put: function (url, data) {
-      return request('PUT', url, data);
+    put: function (url, data, async) {
+      return request('PUT', url, data, async);
     },
-    delete: function (url, data) {
-      return request('DELETE', url, data);
+    delete: function (url, data, async) {
+      return request('DELETE', url, data, async);
     }
   };
   return Ajax;

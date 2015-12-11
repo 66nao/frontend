@@ -20,11 +20,10 @@ define(function (require, exports, module) {
     route: {
       data: function(transition) {
         var self = this;
-        authService.getUserAsync(function(user) {
-          if (user) {
-            self.user.name = user.name;
-          }
-        });
+        var user = authService.getCurrentUser();
+        if (user) {
+          self.user.name = user.name;
+        }
         transition.next();
       }
     }
