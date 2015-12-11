@@ -75,6 +75,7 @@
     "define": true,
     "exports": true,
     "Vue": true,
-    "Ajax": true
+    "Ajax": true,
+    "Promise": true
   }
 }

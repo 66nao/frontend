@@ -20,25 +20,10 @@ define(function (require, exports, module) {
     methods: {
       doLogin: function() {
         if (this.user.username && this.user.password) {
-          // 获取access_token
-          Ajax.post('http://localhost:2368/ghost/api/v0.1/authentication/token', this.user)
-            .done(function(token) {
-              localStorage.setItem('token', token.access_token);
-              // 获取登录者身份信息
-              Ajax.get('http://localhost:2368/ghost/api/v0.1/users/me/?status=all&include=roles')
-                .done(function(user) {
-                  authService.setUser(user);
-                  $router.go('/need-auth');
-                })
-                .error(function(err) {
-                  console.error(err);
-                })
-                .send();
-            })
-            .error(function(err, xhr) {
-              console.error('error: ', err, xhr);
-            })
-            .send();
+          authService.login(this.user).then(function() {
+            // 成功后跳转
+            $router.go('/need-auth');
+          });
         }
       }
     }

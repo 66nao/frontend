@@ -4,7 +4,29 @@
 
 'use strict';
 define(function (require, exports, module) {
+  var authService = require('../../component/auth/auth.service.js');
   module.exports = {
-    template: require('./need-auth.html', 'html')
+    template: require('../../../view/auth/need-auth.html', 'html'),
+    data: function() {
+      return {
+        user: {
+          name: null
+        }
+      }
+    },
+    methods: {
+      logout: authService.logout
+    },
+    route: {
+      data: function(transition) {
+        var self = this;
+        authService.getUserAsync(function(user) {
+          if (user) {
+            self.user.name = user.name;
+          }
+        });
+        transition.next();
+      }
+    }
   };
 });
