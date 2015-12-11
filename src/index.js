@@ -13,12 +13,14 @@ define(function (require) {
   // 每次路由跳转之前判断下一个路由是否需要认证，如果需要认证再进行身份认证，判断身份认证是否通过
   router.beforeEach(function(transition) {
     if (transition.to.auth) {
-      if (auth.isLoggedIn()) {
-        transition.next();
-      } else {
-        transition.abort('user not login');
-        router.go('/login');
-      }
+      auth.isLoggedInAsync(function(loggedIn) {
+        if (loggedIn) {
+          transition.next();
+        } else {
+          transition.abort('user not login');
+          router.go('/login');
+        }
+      });
     } else {
       transition.next();
     }

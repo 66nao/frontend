@@ -4,30 +4,41 @@
 
 'use strict';
 define(function (require, exports, module) {
-  var currentUser = null;
+  var currentUser = null, currentUserPromise = null;
 
-  function getUser() {
-    if (currentUser) {
-      return currentUser;
-    }
+  function initUser() {
     var token = localStorage.getItem('token');
-    if (!token) {
-      return null;
+    if (token) {
+      currentUserPromise = new Promise(function(resolve, reject) {
+        Ajax.get('http://192.168.10.101:9300/ghost/api/v0.1/users/me/?status=all&include=roles', false)
+          .done(function(data) {
+            currentUser = data.users[0];
+            resolve(currentUser);
+          })
+          .error(reject)
+          .send();
+      });
     }
-    var result = null;
-    Ajax.get('http://192.168.10.101:9300/ghost/api/v0.1/users/me/?status=all&include=roles', false)
-      .done(function (data) {
-        currentUser = data.users[0];
-        result = currentUser;
-      })
-      .send();
-    return result;
   }
+
+  function getUserAsync(cb) {
+    if (currentUser) {
+      return cb(currentUser);
+    }
+    if (currentUserPromise) {
+      currentUserPromise.then(function (user) {
+        cb(user);
+      }).catch(function() {
+        cb(null);
+      })
+    } else {
+      cb(null);
+    }
+  }
+
   module.exports = {
-    init: getUser,
-    getCurrentUser: function() {
-      return currentUser;
-    },
+    init: initUser,
+    getUserAsync: getUserAsync,
     login: function(user) {
       return new Promise(function(resolve, reject) {
         // 获取access_token
@@ -35,22 +46,30 @@ define(function (require, exports, module) {
           .done(function(token) {
             localStorage.setItem('token', token.access_token);
             // 获取登录者身份信息
-            getUser();
+            initUser();
             resolve();
           })
-          .error(function(err) {
-            reject(err);
-          })
+          .error(reject)
           .send();
       });
     },
     logout: function() {
       localStorage.removeItem('token');
       currentUser = null;
+      currentUserPromise = null;
       $router.go('/login');
     },
-    isLoggedIn: function() {
-      return currentUser && currentUser.roles;
+    isLoggedInAsync: function(cb) {
+      if (currentUser) {
+        return cb(!!currentUser && !!currentUser.roles);
+      }
+      getUserAsync(function(user) {
+        if (user) {
+          cb(true);
+        } else {
+          cb(false);
+        }
+      });
     }
   };
 });
