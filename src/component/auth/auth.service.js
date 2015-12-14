@@ -30,7 +30,7 @@ define(function (require, exports, module) {
         cb(user);
       }).catch(function() {
         cb(null);
-      })
+      });
     } else {
       cb(null);
     }

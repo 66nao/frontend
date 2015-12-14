@@ -22,7 +22,7 @@ define(function (require, exports, module) {
         if (this.user.username && this.user.password) {
           authService.login(this.user).then(function() {
             // 成功后跳转
-            $router.go('/need-auth');
+            $router.go('/user');
           });
         }
       }

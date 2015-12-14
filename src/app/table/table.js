@@ -15,7 +15,7 @@ define(function (require, exports, module) {
     }
   });
   module.exports = {
-    template: require('../../../view/table/table.html', 'html'),
+    template: require('./table.html', 'html'),
     data: function() {
       return {
         search: '',

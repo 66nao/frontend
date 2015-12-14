@@ -4,7 +4,7 @@
 'use strict';
 define(function (require) {
   var ls = window.localStorage;
-  var auth = require('./static/component/auth/auth.service.js');
+  var auth = require('./component/auth/auth.service.js');
   var App = Vue.extend({});
 
   var router = new VueRouter({
@@ -47,22 +47,22 @@ define(function (require) {
     },
     '/': {
       component: function(resolve) {
-        require.async('./static/js/welcome/welcome.js', resolve)
+        require.async('./app/welcome/welcome.js', resolve);
       }
     },
     '/table': {
       component: function(resolve) {
-        require.async('./static/js/table/table.js', resolve)
+        require.async('./app/table/table.js', resolve);
       }
     },
     '/login': {
       component: function(resolve) {
-        require.async('./static/component/auth/login.js', resolve)
+        require.async('./component/auth/login.js', resolve);
       }
     },
-    '/need-auth': {
+    '/user': {
       component: function(resolve) {
-        require.async('./static/js/auth/need-auth.js', resolve)
+        require.async('./app/user/user.js', resolve);
       },
       auth: true
     }

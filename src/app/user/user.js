@@ -6,13 +6,13 @@
 define(function (require, exports, module) {
   var authService = require('../../component/auth/auth.service.js');
   module.exports = {
-    template: require('../../../view/auth/need-auth.html', 'html'),
+    template: require('./user.html', 'html'),
     data: function() {
       return {
         user: {
           name: null
         }
-      }
+      };
     },
     methods: {
       logout: authService.logout

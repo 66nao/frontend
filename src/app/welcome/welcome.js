@@ -5,6 +5,6 @@
 'use strict';
 define(function (require, exports, module) {
   module.exports = {
-    template: require('../../../view/welcome/welcome.html', 'html')
+    template: require('./welcome.html', 'html')
   };
 });

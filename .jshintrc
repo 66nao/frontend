@@ -75,7 +75,9 @@
     "define": true,
     "exports": true,
     "Vue": true,
+    "VueRouter": true,
     "Ajax": true,
-    "Promise": true
+    "Promise": true,
+    "$router": true
   }
 }

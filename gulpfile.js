@@ -11,15 +11,16 @@ var gulp = require('gulp'),
 
 // 源文件路径
 var src = {
-  stylus: 'src/static/stylus/**/*.styl',
-  js: 'src/static/js/**/*.js',
-  html: ['src/index.html', 'src/view/**/*.html']
+  appStylus: 'src/app/**/*.styl',
+  assestStylus: 'src/assest/stylus/**/*.styl',
+  js: ['src/**/*.js', '!src/**/*.min.js', '!src/assest/js/lib/**/*.js'],
+  html: 'src/**/*.html'
 };
 
 // 编译后的文件路径
 var compile = {
-  js: 'src/static/js',
-  css: 'src/static/css'
+  appCss: 'src/app',
+  assestCss: 'src/assest/css'
 };
 
 // js文件检查任务
@@ -30,23 +31,30 @@ gulp.task('js', function() {
 });
 
 // stylus代码检查、自动编译、自动注入任务
-gulp.task('stylus', function () {
-  return gulp.src(src.stylus)
+gulp.task('stylus', function (done) {
+  gulp.src(src.appStylus)
     .pipe(plumber())
     .pipe(stylint())
     .pipe(stylint.reporter())
     .pipe(stylus())
-    .pipe(gulp.dest(compile.css))
+    .pipe(gulp.dest(compile.appCss))
     .pipe(reload({stream: true}));
+
+  gulp.src(src.assestStylus)
+    .pipe(plumber())
+    .pipe(stylint())
+    .pipe(stylint.reporter())
+    .pipe(stylus())
+    .pipe(gulp.dest(compile.assestCss))
+    .pipe(reload({stream: true}));
+  done();
 });
 
 // 监控任务，当删除源码时同时删除掉编译的对应文件
 gulp.task('watch', function(done) {
-  gulp.watch(src.js, gulp.series('js'));
-  gulp.watch(src.html, function() {
-    console.log(1)
-  });
-  gulp.watch(src.stylus, gulp.series('stylus'))
+  gulp.watch(src.js, gulp.series('js', reload));
+  gulp.watch(src.html, reload);
+  gulp.watch([src.appStylus, src.assestStylus], gulp.series('stylus'))
     .on('unlink', function(filepath) {
       console.log('path: %', filepath);
       var toRemoveFilePath = path.resolve(filepath.replace('stylus', 'css').replace('.styl', '.css'));
@@ -97,8 +105,8 @@ gulp.task('copy-dependence', function(done) {
         }
       }
       var srcPath = path.join(prefixDependence, dependence[d].src),
-        destParentPath = path.join(prefixDest, '/static', dependence[d].type),
-        destPath = path.join(destParentPath, '/lib/', d);
+        destParentPath = path.join(prefixDest, '/assest', dependence[d].type),
+        destPath = path.join(destParentPath, '/lib', d);
       // 检查源文件的读写权限
       var stat;
       try {
