@@ -4,7 +4,7 @@
 
 'use strict';
 define(function (require, exports, module) {
-  var authService = require('./auth.service.js');
+  var authService = require('../../../component/auth/auth.service.js');
   module.exports = {
     template: require('./login.html', 'html'),
     data: function() {

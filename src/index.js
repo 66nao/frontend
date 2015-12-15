@@ -57,7 +57,7 @@ define(function (require) {
     },
     '/login': {
       component: function(resolve) {
-        require.async('./component/auth/login.js', resolve);
+        require.async('./app/account/login/login.js', resolve);
       }
     },
     '/user': {
