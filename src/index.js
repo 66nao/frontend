@@ -65,6 +65,11 @@ define(function (require) {
         require.async('./app/user/user.js', resolve);
       },
       auth: true
+    },
+    '/chat': {
+      component: function(resolve) {
+        require.async('./app/chat/chat.js', resolve);
+      }
     }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
