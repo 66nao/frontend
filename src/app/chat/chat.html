@@ -1,0 +1,23 @@
+<div>
+  <link rel="stylesheet"  href="/app/chat/chat.css">
+  <div class="submit-box">
+    <textarea v-model="text"></textarea>
+    <button @click="send">send</button>
+  </div>
+  <div class="chat-box">
+    <div class="chats">
+      <div v-for="message in messages">
+        <div class="chat" :class="{'sender': message.role !== 'receiver', 'receiver': message.role === 'receiver'}" transition="bounce">
+          <div class="person">
+            <img :src="message.avatar" />
+            <span>{{ message.name }}</span>
+          </div>
+          <div class="chat-text">
+            <div class="time">{{ message.time }}</div>
+            <div class="text">{{ message.text }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>

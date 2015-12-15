@@ -1,8 +1,8 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
-  "description": "",
-  "main": "",
+  "version": "0.1.0",
+  "description": "66nao frontend source using Vuejs",
+  "main": "src/index.html",
   "scripts": {
     "dev": "gulp dev",
     "build": "coolie"
@@ -19,12 +19,18 @@
   "homepage": "https://github.com/66nao/frontend#readme",
   "devDependencies": {
     "browser-sync": "^2.10.0",
-    "bs-html-injector": "^2.0.4",
+    "fs-extra": "^0.26.2",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-jshint": "^2.0.0",
     "gulp-plumber": "^1.0.1",
     "gulp-stylint": "^3.0.0",
-    "gulp-stylus": "^2.1.0",
-    "jshint": "^2.8.0"
+    "gulp-stylus": "^2.1.0"
+  },
+  "dependencies": {
+    "promis": "bramstein/promis",
+    "purecss": "^0.6.0",
+    "vue": "^1.0.10",
+    "vue-router": "vuejs/vue-router#dev",
+    "vue-validator": "^2.0.0-alpha.8"
   }
 }

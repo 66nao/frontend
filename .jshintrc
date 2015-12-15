@@ -73,6 +73,11 @@
     "coolie": true,
     "module": true,
     "define": true,
-    "exports": true
+    "exports": true,
+    "Vue": true,
+    "VueRouter": true,
+    "Ajax": true,
+    "Promise": true,
+    "$router": true
   }
 }
