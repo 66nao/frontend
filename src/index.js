@@ -73,7 +73,7 @@ define(function (require) {
     },
     '/form':{
       component:function(resolve){
-        require.async('./static/js/form/form.js',resolve)
+        require.async('./app/form/form.js',resolve);
       }
     }
   });
