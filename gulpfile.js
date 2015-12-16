@@ -11,8 +11,8 @@ var gulp = require('gulp'),
 
 // 源文件路径
 var src = {
-  appStylus: 'src/app/**/*.styl',
   assestStylus: 'src/assest/stylus/**/*.styl',
+  otherStylus: 'src/app/**/*.styl',
   js: ['src/**/*.js', '!src/**/*.min.js', '!src/assest/js/lib/**/*.js'],
   html: 'src/**/*.html'
 };
@@ -32,7 +32,7 @@ gulp.task('js', function() {
 
 // stylus代码检查、自动编译、自动注入任务
 gulp.task('stylus', function (done) {
-  gulp.src(src.appStylus)
+  gulp.src(src.otherStylus)
     .pipe(plumber())
     .pipe(stylint())
     .pipe(stylint.reporter())
@@ -54,7 +54,7 @@ gulp.task('stylus', function (done) {
 gulp.task('watch', function(done) {
   gulp.watch(src.js, gulp.series('js', reload));
   gulp.watch(src.html, reload);
-  gulp.watch([src.appStylus, src.assestStylus], gulp.series('stylus'))
+  gulp.watch([src.otherStylus, src.assestStylus], gulp.series('stylus'))
     .on('unlink', function(filepath) {
       console.log('path: %', filepath);
       var toRemoveFilePath = path.resolve(filepath.replace('stylus', 'css').replace('.styl', '.css'));

@@ -5,7 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "dev": "gulp dev",
-    "build": "coolie"
+    "build": "cd src && coolie build"
   },
   "repository": {
     "type": "git",
