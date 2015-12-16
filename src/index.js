@@ -63,6 +63,11 @@ define(function (require) {
         require.async('./static/js/auth/need-auth.js', resolve)
       },
       auth: true
+    },
+    '/form':{
+      component:function(resolve){
+        require.async('./static/js/form/form.js',resolve)
+      }
     }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
