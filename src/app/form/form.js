@@ -5,7 +5,7 @@
 define(function (require, exports, module) {
 
   module.exports = {
-    template: require('../../../view/form/form.html','html'),
+    template: require('./form.html','html'),
     data: function() {
       return {
         isSubmitted: false,
