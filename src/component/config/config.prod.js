@@ -5,7 +5,7 @@
 'use strict';
 define(function (require, exports, module) {
   module.exports = {
-    GHOST_SERVER_HOST: 'http://192.168.10.101:2368/',
+    GHOST_SERVER_HOST: 'http://192.168.10.101:9300/',
     MOCK_SERVER_HOST: ''
   };
 });

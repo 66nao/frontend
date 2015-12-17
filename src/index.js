@@ -4,6 +4,10 @@
 'use strict';
 define(function (require) {
   var ls = window.localStorage;
+  window.$config = require('./component/config/config.prod.js');
+  if (DEBUG) {
+    window.$config = require('./component/config/config.dev.js');
+  }
   var auth = require('./component/auth/auth.service.js');
   var App = Vue.extend({});
 
@@ -79,7 +83,7 @@ define(function (require) {
   });
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();
-  // 暴露router
+  // 暴露公共对象
   window.$router = router;
   router.start(App, '#app');
 });
