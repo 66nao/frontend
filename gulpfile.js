@@ -12,15 +12,15 @@ var gulp = require('gulp'),
 // 源文件路径
 var src = {
   assestStylus: 'src/assest/stylus/**/*.styl',
-  otherStylus: 'src/app/**/*.styl',
+  otherStylus: ['src/**/*.styl', '!src/assest/stylus/**/*.styl'],
   js: ['src/**/*.js', '!src/**/*.min.js', '!src/assest/js/lib/**/*.js'],
   html: 'src/**/*.html'
 };
 
 // 编译后的文件路径
 var compile = {
-  appCss: 'src/app',
-  assestCss: 'src/assest/css'
+  assestCss: 'src/assest/css',
+  otherCss: 'src/'
 };
 
 // js文件检查任务
@@ -37,7 +37,7 @@ gulp.task('stylus', function (done) {
     .pipe(stylint())
     .pipe(stylint.reporter())
     .pipe(stylus())
-    .pipe(gulp.dest(compile.appCss))
+    .pipe(gulp.dest(compile.otherCss))
     .pipe(reload({stream: true}));
 
   gulp.src(src.assestStylus)
