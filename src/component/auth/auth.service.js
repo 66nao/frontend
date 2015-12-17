@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     var token = localStorage.getItem('token');
     if (token) {
       currentUserPromise = new Promise(function(resolve, reject) {
-        Ajax.get('http://192.168.10.101:9300/ghost/api/v0.1/users/me/?status=all&include=roles', false)
+        Ajax.get($config.GHOST_SERVER_HOST + 'ghost/api/v0.1/users/me/?status=all&include=roles', false)
           .done(function(data) {
             currentUser = data.users[0];
             resolve(currentUser);
@@ -42,7 +42,7 @@ define(function (require, exports, module) {
     login: function(user) {
       return new Promise(function(resolve, reject) {
         // 获取access_token
-        Ajax.post('http://192.168.10.101:9300/ghost/api/v0.1/authentication/token', user)
+        Ajax.post($config.GHOST_SERVER_HOST + 'ghost/api/v0.1/authentication/token', user)
           .done(function(token) {
             localStorage.setItem('token', token.access_token);
             // 获取登录者身份信息

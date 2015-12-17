@@ -16,17 +16,7 @@
 <body id="app">
   <header>header</header>
   <section>
-    <nav>
-      <ul>
-        <li><a v-link="{path: '/', exact: true}">Welcome</a></li>
-        <li><a v-link="'/table'">Table</a></li>
-        <li><a v-link="'/login'">Login</a></li>
-        <li><a v-link="'/user'">User info</a></li>
-        <li><a v-link="'/chat'">chat</a></li>
-        <li><a v-link="'/form'">form</a></li>
-        <li><a v-link="'/tooltip'">tooltip</a></li>
-      </ul>
-    </nav>
+    <kf-menu></kf-menu>
     <div id="content">
       <router-view transition-mode="out-in" transition="fade"></router-view>
     </div>
