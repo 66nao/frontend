@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    <li><a v-link="{path: '/', exact: true}">Welcome</a></li>
+    <li><a v-link="'/login'">Login</a></li>
+    <li><a v-link="'/user'">User info</a></li>
+    <li v-for="menu in menus">
+      <a v-link="menu.link">{{menu.text}}</a>
+    </li>
+  </ul>
+</nav>

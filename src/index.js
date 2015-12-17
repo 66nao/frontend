@@ -4,10 +4,7 @@
 'use strict';
 define(function (require) {
   var ls = window.localStorage;
-  window.$config = require('./component/config/config.prod.js');
-  if (DEBUG) {
-    window.$config = require('./component/config/config.dev.js');
-  }
+  window.$config = require('./component/config/config.js');
   var auth = require('./component/auth/auth.service.js');
   var App = Vue.extend({});
 
@@ -90,5 +87,7 @@ define(function (require) {
   auth.init();
   // 暴露公共对象
   window.$router = router;
+  // 调用菜单
+  require('./component/menu/menu.js');
   router.start(App, '#app');
 });
