@@ -25,13 +25,13 @@ module.exports = function (coolie) {
       // js 文件保存目录
       dest: './static/js',
       // 分块配置
-      chunk: ['./static/js/core/*.js']
+      chunk: ['']
     },
 
     // html 构建
     html: {
       // html 文件
-      src: ['./index.html', './view/**/*.html'],
+      src: ['./**/*.html'],
       // 是否压缩
       minify: true
     },

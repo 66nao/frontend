@@ -1,9 +1,45 @@
 {
+  "/app/account/login/login.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
+  "/app/chat/chat.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
+  "/app/form/form.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
+  "/app/table/table.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
+  "/app/user/user.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
+  "/app/welcome/welcome.html": {
+    "main": [],
+    "async": [],
+    "js": [],
+    "css": []
+  },
   "/index.html": {
     "main": [
       {
         "src": "/index.js",
-        "dest": "../dest/13bd861da2ccae8b.js",
+        "dest": "../dest/f89becc32948d680.js",
         "deps": [
           "/component/auth/auth.service.js"
         ]
@@ -12,21 +48,21 @@
     "async": [
       {
         "src": "/app/welcome/welcome.js",
-        "dest": "../dest/static/js/async/1.4c6ae6022bb63430.js",
+        "dest": "../dest/static/js/async/1.483cbe56b4d9ab35.js",
         "deps": [
           "/app/welcome/welcome.html"
         ]
       },
       {
         "src": "/app/table/table.js",
-        "dest": "../dest/static/js/async/2.eb65ff87d2b1afb5.js",
+        "dest": "../dest/static/js/async/2.92f26050ec791c4e.js",
         "deps": [
           "/app/table/table.html"
         ]
       },
       {
         "src": "/app/account/login/login.js",
-        "dest": "../dest/static/js/async/3.eba195f11c48bf46.js",
+        "dest": "../dest/static/js/async/3.6d42866f93724377.js",
         "deps": [
           "/component/auth/auth.service.js",
           "/app/account/login/login.html"
@@ -34,7 +70,7 @@
       },
       {
         "src": "/app/user/user.js",
-        "dest": "../dest/static/js/async/4.e6a88facaca99374.js",
+        "dest": "../dest/static/js/async/4.0a6f196bf4d11309.js",
         "deps": [
           "/component/auth/auth.service.js",
           "/app/user/user.html"
@@ -42,9 +78,16 @@
       },
       {
         "src": "/app/chat/chat.js",
-        "dest": "../dest/static/js/async/5.9d384ad962a5ee72.js",
+        "dest": "../dest/static/js/async/5.c7cc22738457204c.js",
         "deps": [
           "/app/chat/chat.html"
+        ]
+      },
+      {
+        "src": "/app/form/form.js",
+        "dest": "../dest/static/js/async/6.8eecef296269b9b8.js",
+        "deps": [
+          "/app/form/form.html"
         ]
       }
     ],
