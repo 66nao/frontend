@@ -75,7 +75,12 @@ define(function (require) {
       component:function(resolve){
         require.async('./app/form/form.js', resolve);
       }
-    }
+    },
+      '/tooltip': {
+        component: function (resolve) {
+          require.async('./app/tooltip/tooltip.js', resolve);
+        }
+      }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();
