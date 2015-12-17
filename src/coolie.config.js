@@ -3,8 +3,11 @@
  * coolie cli 配置文件 `coolie.config.js`
  * 使用 `coolie.init -c` 生成 `coolie.config.js` 文件模板
  * 当前配置文件所在的目录为构建的根目录
- * @link http://coolie.ydr.me/begin/coolie.config.js/
+ *
+ * @link http://coolie.ydr.me/guide/coolie.config.js/
  * @author ydr.me
+ * @version 1.0.24
+ * @create 2015-12-17 10:19:07
  * =======================================================
  */
 
@@ -23,15 +26,15 @@ module.exports = function (coolie) {
       // coolie-config.js 路径
       'coolie-config.js': './coolie-config.js',
       // js 文件保存目录
-      dest: './static/js',
+      dest: './static/js/',
       // 分块配置
-      chunk: ['']
+      chunk: []
     },
 
     // html 构建
     html: {
       // html 文件
-      src: ['./**/*.html'],
+      src: ['./index.html'],
       // 是否压缩
       minify: true
     },
@@ -39,7 +42,7 @@ module.exports = function (coolie) {
     // css 构建
     css: {
       // css 文件保存目录
-      dest: './static/css',
+      dest: './static/css/',
       // css 压缩配置
       minify: {
         compatibility: 'ie8'
@@ -49,13 +52,16 @@ module.exports = function (coolie) {
     // 资源
     resource: {
       // 资源保存目录
-      dest: './static/res',
+      dest: './static/res/',
       // 是否压缩
       minify: true
     },
 
     // 原样复制文件
-    copy: [],
+    copy: [
+      '/favicon.ico',
+      'robots.txt'
+    ],
 
     // 目标配置
     dest: {

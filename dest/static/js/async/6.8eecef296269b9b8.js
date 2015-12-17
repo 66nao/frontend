@@ -1,3 +1,3 @@
-/*coolie@1.0.8*/
+/*coolie@1.0.25*/
 "use strict";define("0",["d"],function(t,i,e){e.exports={template:t("d"),data:function(){return{isSubmitted:!1,comment:""}},methods:{doSubmit:function(){this.isSubmitted=!0}},watch:{comment:function(){this.isSubmitted=!1}}}});
 define("d",[],function(y,d,r){r.exports="<div> <link href=\"//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css\" rel=\"stylesheet\"> <validator name=\"validation\"> <form novalidate v-on:submit.prevent=\"doSubmit\"> <input type=\"text\" v-validate:comment=\"{ minlength: 2, maxlength: 10 }\" v-model=\"comment\"> <div> <span v-show=\"isSubmitted && $validation.comment.minlength\">Your comment is too short.</span> <span v-show=\"isSubmitted && $validation.comment.maxlength\">Your comment is too long.</span> </div> <button type=\"submit\">submit</button> </form> </validator> </div> "});

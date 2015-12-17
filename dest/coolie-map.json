@@ -1,138 +1,103 @@
 {
-  "/app/account/login/login.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
-  "/app/chat/chat.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
-  "/app/form/form.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
-  "/app/table/table.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
-  "/app/user/user.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
-  "/app/welcome/welcome.html": {
-    "main": [],
-    "async": [],
-    "js": [],
-    "css": []
-  },
   "/index.html": {
     "main": [
       {
-        "src": "/index.js",
-        "dest": "../dest/f89becc32948d680.js",
+        "src": "../src/index.js",
+        "dest": "/static/js/f89becc32948d680.js",
         "deps": [
-          "/component/auth/auth.service.js"
+          "../src/component/auth/auth.service.js"
         ]
       }
     ],
     "async": [
       {
-        "src": "/app/welcome/welcome.js",
-        "dest": "../dest/static/js/async/1.483cbe56b4d9ab35.js",
+        "src": "../src/app/welcome/welcome.js",
+        "dest": "/static/js/async/1.bb7880c7012e9758.js",
         "deps": [
-          "/app/welcome/welcome.html"
+          "../src/app/welcome/welcome.html"
         ]
       },
       {
-        "src": "/app/table/table.js",
-        "dest": "../dest/static/js/async/2.92f26050ec791c4e.js",
+        "src": "../src/app/table/table.js",
+        "dest": "/static/js/async/2.2934a696461c1d5f.js",
         "deps": [
-          "/app/table/table.html"
+          "../src/app/table/table.html"
         ]
       },
       {
-        "src": "/app/account/login/login.js",
-        "dest": "../dest/static/js/async/3.6d42866f93724377.js",
+        "src": "../src/app/account/login/login.js",
+        "dest": "/static/js/async/3.6d42866f93724377.js",
         "deps": [
-          "/component/auth/auth.service.js",
-          "/app/account/login/login.html"
+          "../src/component/auth/auth.service.js",
+          "../src/app/account/login/login.html"
         ]
       },
       {
-        "src": "/app/user/user.js",
-        "dest": "../dest/static/js/async/4.0a6f196bf4d11309.js",
+        "src": "../src/app/user/user.js",
+        "dest": "/static/js/async/4.0a6f196bf4d11309.js",
         "deps": [
-          "/component/auth/auth.service.js",
-          "/app/user/user.html"
+          "../src/component/auth/auth.service.js",
+          "../src/app/user/user.html"
         ]
       },
       {
-        "src": "/app/chat/chat.js",
-        "dest": "../dest/static/js/async/5.c7cc22738457204c.js",
+        "src": "../src/app/chat/chat.js",
+        "dest": "/static/js/async/5.f0566cf72cb179f7.js",
         "deps": [
-          "/app/chat/chat.html"
+          "../src/app/chat/chat.html"
         ]
       },
       {
-        "src": "/app/form/form.js",
-        "dest": "../dest/static/js/async/6.8eecef296269b9b8.js",
+        "src": "../src/app/form/form.js",
+        "dest": "/static/js/async/6.8eecef296269b9b8.js",
         "deps": [
-          "/app/form/form.html"
+          "../src/app/form/form.html"
         ]
       }
     ],
     "js": [
       {
-        "dest": "../dest/static/js/1613fd7a34331a62.js",
+        "dest": "/static/js/1613fd7a34331a62.js",
         "deps": [
-          "/assest/js/lib/vue.js",
-          "/assest/js/lib/vue-router.js",
-          "/assest/js/lib/vue-validator.js",
-          "/assest/js/lib/promise.js",
-          "/assest/js/core/ajax.js"
+          "../src/assest/js/lib/vue.js",
+          "../src/assest/js/lib/vue-router.js",
+          "../src/assest/js/lib/vue-validator.js",
+          "../src/assest/js/lib/promise.js",
+          "../src/assest/js/core/ajax.js"
         ]
       }
     ],
     "css": [
       {
-        "dest": "../dest/static/css/e2aa406a861e3eac.css",
+        "dest": "/static/css/e2aa406a861e3eac.css",
         "deps": [
           {
-            "src": "/assest/css/lib/pure.css",
+            "src": "../src/assest/css/lib/pure.css",
             "res": []
           },
           {
-            "src": "/assest/css/core/header.css",
+            "src": "../src/assest/css/core/header.css",
             "res": []
           },
           {
-            "src": "/assest/css/core/section.css",
+            "src": "../src/assest/css/core/section.css",
             "res": []
           },
           {
-            "src": "/assest/css/core/nav.css",
+            "src": "../src/assest/css/core/nav.css",
             "res": []
           },
           {
-            "src": "/assest/css/core/content.css",
+            "src": "../src/assest/css/core/content.css",
             "res": []
           },
           {
-            "src": "/assest/css/core/footer.css",
+            "src": "../src/assest/css/core/footer.css",
             "res": []
           }
         ]
       }
-    ]
+    ],
+    "res": []
   }
 }

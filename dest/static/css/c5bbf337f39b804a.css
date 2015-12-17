@@ -1,0 +1,1 @@
+.sortable{position:relative}.sortable .down,.sortable .upper{position:absolute;top:2px;right:4px;display:block;color:#999}.sortable .down{top:14px}.sortable .down:hover,.sortable .upper:hover{display:block;color:#333}

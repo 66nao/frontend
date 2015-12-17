@@ -1,2 +1,0 @@
-<div> <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"> <validator name="validation"> <form novalidate v-on:submit.prevent="doSubmit"> <input type="text" v-validate:comment="{ minlength: 2, maxlength: 10 }" v-model="comment"> <div> <span v-show="isSubmitted && $validation.comment.minlength">Your comment is too short.</span> <span v-show="isSubmitted && $validation.comment.maxlength">Your comment is too long.</span> </div> <button type="submit">submit</button> </form> </validator> </div> 
-<!--coolie@1.0.8-->
