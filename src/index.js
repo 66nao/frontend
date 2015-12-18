@@ -89,5 +89,6 @@ define(function (require) {
   window.$router = router;
   // 调用菜单
   require('./component/menu/menu.js');
+  // 启动应用
   router.start(App, '#app');
 });

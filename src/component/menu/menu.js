@@ -3,12 +3,12 @@
  */
 
 'use strict';
-define(function (require, exports, module) {
+define(function (require) {
   Vue.component('kf-menu', {
     template: require('./menu.html', 'html'),
     data: function() {
       return {
-        menus: require('./menu.config.js')
+        menus: require('./menu.config.json', 'json')
       };
     }
   });
