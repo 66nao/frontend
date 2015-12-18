@@ -13,5 +13,10 @@
     "require": true,
     "text": "table",
     "link": "/table"
+  },
+  "tooltip": {
+    "require": true,
+    "text": "tooltip",
+    "link": "/tooltip"
   }
 }
