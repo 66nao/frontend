@@ -7,22 +7,7 @@ nav ul {
   padding: 0;
   list-style: none;
 }
-nav ul > li {
-  position: relative;
-}
-nav ul > li .arrow {
-  display: block;
-  float: right;
-  width: 3rem;
-  margin-right: -1rem;
-  line-height: 2rem;
-  text-align: center;
-  transition: all 0.3s;
-}
-nav ul > li .arrow.arrow-down {
-  transform: rotate(90deg);
-}
-nav ul > li a {
+nav ul > li > a {
   display: block;
   padding: 4px 1rem;
   height: 2rem;
@@ -30,16 +15,7 @@ nav ul > li a {
   color: #fff;
   text-decoration: none;
 }
-nav ul > li a:hover,
-nav ul > li a.v-link-active {
+nav ul > li > a:hover,
+nav ul > li > a.v-link-active {
   background: #1f8dd6;
-}
-.expand-transition {
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-.expand-enter,
-.expand-leave {
-  height: 0 !important;
-  opacity: 0;
 }
