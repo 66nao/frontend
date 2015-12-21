@@ -12,11 +12,14 @@
   <link rel="stylesheet" href="/assest/css/core/content.css">
   <link rel="stylesheet" href="/assest/css/core/footer.css">
   <!-- /coolie -->
+  <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body id="app">
   <header>header</header>
   <section>
-    <kf-menu></kf-menu>
+    <kf-menu>
+
+    </kf-menu>
     <div id="content">
       <router-view transition-mode="out-in" transition="fade"></router-view>
     </div>
@@ -24,12 +27,12 @@
   <footer>footer</footer>
 
   <!-- coolie -->
-  <script src="./assest/js/lib/vue.js"></script>
-  <script src="./assest/js/lib/vue-router.js"></script>
-  <script src="./assest/js/lib/vue-validator.js"></script>
-  <script src="./assest/js/lib/promise.js"></script>
-  <script src="./assest/js/core/ajax.js"></script>
+  <script src="/assest/js/lib/vue.js"></script>
+  <script src="/assest/js/lib/vue-router.js"></script>
+  <script src="/assest/js/lib/vue-validator.js"></script>
+  <script src="/assest/js/lib/promise.js"></script>
+  <script src="/assest/js/core/ajax.js"></script>
   <!-- /coolie -->
-  <script coolie src="./coolie.min.js" data-config="./coolie-config.js" data-main="index.js"></script>
+  <script coolie src="/coolie.min.js" data-config="/coolie-config.js" data-main="/index.js"></script>
 </body>
 </html>

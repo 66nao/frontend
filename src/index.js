@@ -3,6 +3,7 @@
  */
 'use strict';
 define(function (require) {
+  Vue.config.debug = true;
   var ls = window.localStorage;
   window.$config = require('./component/config/config.js');
   var auth = require('./component/auth/auth.service.js');
@@ -77,11 +78,33 @@ define(function (require) {
         require.async('./app/form/form.js', resolve);
       }
     },
-      '/tooltip': {
-        component: function (resolve) {
-          require.async('./app/tooltip/tooltip.js', resolve);
+    '/tooltip': {
+      component: function (resolve) {
+        require.async('./app/tooltip/tooltip.js', resolve);
+      }
+    },
+    '/sub-menu': {
+      component: function(resolve) {
+        require.async('./app/sub-menu/sub-menu.js', resolve);
+      },
+      subRoutes: {
+        '/': {
+          component: function (resolve) {
+            require.async('./app/sub-menu/sub/main.js', resolve);
+          }
+        },
+        '/sub1': {
+          component: function (resolve) {
+            require.async('./app/sub-menu/sub/sub1.js', resolve);
+          }
+        },
+        '/sub2': {
+          component: function (resolve) {
+            require.async('./app/sub-menu/sub/sub2.js', resolve);
+          }
         }
       }
+    }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();

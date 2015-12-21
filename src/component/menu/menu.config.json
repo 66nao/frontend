@@ -18,5 +18,23 @@
     "require": true,
     "text": "tooltip",
     "link": "/tooltip"
+  },
+  "sub-menu": {
+    "require": true,
+    "text": "sub-menu",
+    "link": "/sub-menu",
+    "parent": true,
+    "subMenus": {
+      "sub-menu-1": {
+        "require": true,
+        "text": "sub-menu-1",
+        "link": "/sub1"
+      },
+      "sub-menu-2": {
+        "require": true,
+        "text": "sub-menu-2",
+        "link": "/sub2"
+      }
+    }
   }
 }

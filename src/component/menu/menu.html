@@ -3,8 +3,23 @@
     <li><a v-link="{path: '/', exact: true}">Welcome</a></li>
     <li><a v-link="'/login'">Login</a></li>
     <li><a v-link="'/user'">User info</a></li>
-    <li v-for="menu in menus">
-      <a v-link="menu.link">{{menu.text}}</a>
+    <li v-for="menu in menus" >
+      <template v-if="!menu.subMenus">
+        <a v-link="menu.link">{{menu.text}}</a>
+      </template>
+      <template v-else>
+        <a v-link="menu.parent?menu.link:''" :class="{pointer: !menu.parent}">
+          {{menu.text}}
+          <span class="arrow fa fa-caret-right"
+                :class="{'arrow-down': isOpened}"
+                @click="isOpened = !isOpened"></span>
+        </a>
+        <ul v-show="isOpened" transition="expand" :style="{height: calcHeight(menu.subMenus)}">
+          <li v-for="sub in menu.subMenus">
+            <a v-link="menu.link+sub.link">{{sub.text}}</a>
+          </li>
+        </ul>
+      </template>
     </li>
   </ul>
 </nav>
