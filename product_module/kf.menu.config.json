@@ -1,16 +1,13 @@
 {
   "chat": {
-    "require": true,
     "text": "chat",
     "link": "/chat"
   },
   "form": {
-    "require": true,
     "text": "form",
     "link": "/form"
   },
   "table": {
-    "require": true,
     "text": "table",
     "link": "/table"
   }

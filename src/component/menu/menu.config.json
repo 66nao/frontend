@@ -1,22 +1,22 @@
 {
   "chat": {
-    "require": true,
     "text": "chat",
-    "link": "/chat"
+    "link": "/chat",
+    "main": "/app/chat/chat.js"
   },
   "form": {
-    "require": true,
     "text": "form",
-    "link": "/form"
+    "link": "/form",
+    "main": "/app/form/form.js"
   },
   "table": {
-    "require": true,
     "text": "table",
-    "link": "/table"
+    "link": "/table",
+    "main": "/app/table/table.js"
   },
   "tooltip": {
-    "require": true,
     "text": "tooltip",
-    "link": "/tooltip"
+    "link": "/tooltip",
+    "main": "/app/tooltip/tooltip.js"
   }
 }

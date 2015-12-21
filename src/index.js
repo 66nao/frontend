@@ -51,11 +51,6 @@ define(function (require) {
         require.async('./app/welcome/welcome.js', resolve);
       }
     },
-    '/table': {
-      component: function(resolve) {
-        require.async('./app/table/table.js', resolve);
-      }
-    },
     '/login': {
       component: function(resolve) {
         require.async('./app/account/login/login.js', resolve);
@@ -66,22 +61,7 @@ define(function (require) {
         require.async('./app/user/user.js', resolve);
       },
       auth: true
-    },
-    '/chat': {
-      component: function(resolve) {
-        require.async('./app/chat/chat.js', resolve);
-      }
-    },
-    '/form':{
-      component:function(resolve){
-        require.async('./app/form/form.js', resolve);
-      }
-    },
-      '/tooltip': {
-        component: function (resolve) {
-          require.async('./app/tooltip/tooltip.js', resolve);
-        }
-      }
+    }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();
