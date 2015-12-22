@@ -31,11 +31,11 @@
         <input type="radio" value="2"  name="sex1" v-model="test">女
         <span v-show="test==null">性别为必选信息，请选择性别！</span>
       </div>
-      <div>
-        <label>出生日期：</label>
-        <input type="text" v-validate:date="['required']" v-model="date">
-        <span v-show="$validation.date.required">出生日期为必选信息，请选择出生日期！</span>
-      </div>
+      <!--<div>-->
+        <!--<label>出生日期：</label>-->
+        <!--<input type="text" v-validate:date="['required']" v-model="date">-->
+        <!--<span v-show="$validation.date.required">出生日期为必选信息，请选择出生日期！</span>-->
+      <!--</div>-->
       <div>
         <label>利手：</label>
         <select v-model="hand">
@@ -46,18 +46,18 @@
         </select>
         <span v-show="!hand">利手为必选信息，请选择利手！</span>
       </div>
-      <div>
-        <label>手机号：*</label>
-        <input type="text" v-validate:phone="['call','required']" >
-        <span v-show="$validation.phone.required">手机号不能为空</span>
-        <span v-show="!$validation.phone.required && $validation.phone.call">请输入正确的手机格式</span>
-      </div>
-      <div>
-        <label>病历号：*</label>
-        <input type="text" v-validate:number="{ required:true,maxlength:20 }">
-        <span v-show="$validation.number.required">病历号不能为空</span>
-        <span v-show="!$validation.number.required && $validation.number.maxlength">病历号长度不能超过20个字符</span>
-      </div>
+      <!--<div>-->
+        <!--<label>手机号：*</label>-->
+        <!--<input type="text" v-validate:phone="['call','required']" >-->
+        <!--<span v-show="$validation.phone.required">手机号不能为空</span>-->
+        <!--<span v-show="!$validation.phone.required && $validation.phone.call">请输入正确的手机格式</span>-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<label>病历号：*</label>-->
+        <!--<input type="text" v-validate:number="{ required:true,maxlength:20 }">-->
+        <!--<span v-show="$validation.number.required">病历号不能为空</span>-->
+        <!--<span v-show="!$validation.number.required && $validation.number.maxlength">病历号长度不能超过20个字符</span>-->
+      <!--</div>-->
       <input type="submit" value="send" >
 
     </form>
