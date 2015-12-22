@@ -22,8 +22,14 @@ define(function (require) {
     template: require('./menu.html', 'html'),
     data: function() {
       return {
+        isOpened: false,
         menus: menuConfig
       };
+    },
+    methods: {
+      calcHeight: function(subMenus) {
+        return 2.5 * Object.keys(subMenus).length + 'rem';
+      }
     }
   });
 });

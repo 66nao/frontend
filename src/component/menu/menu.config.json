@@ -18,5 +18,22 @@
     "text": "tooltip",
     "link": "/tooltip",
     "main": "/app/tooltip/tooltip.js"
+  },
+  "sub-menu": {
+    "text": "sub-menu",
+    "link": "/sub-menu",
+    "parent": true,
+    "subMenus": {
+      "sub-menu-1": {
+        "text": "sub-menu-1",
+        "link": "/sub1",
+        "main": "/app/sub-menu/sub/sub1.js"
+      },
+      "sub-menu-2": {
+        "text": "sub-menu-2",
+        "link": "/sub2",
+        "main": "/app/sub-menu/sub/sub2.js"
+      }
+    }
   }
 }
