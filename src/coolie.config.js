@@ -59,8 +59,8 @@ module.exports = function (coolie) {
 
     // 原样复制文件
     copy: [
-      '/favicon.ico',
-      'robots.txt'
+      './favicon.ico',
+      './robots.txt'
     ],
 
     // 目标配置

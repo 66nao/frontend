@@ -12,7 +12,7 @@
           {{menu.text}}
           <span class="arrow fa fa-caret-right"
                 :class="{'arrow-down': isOpened}"
-                @click="isOpened = !isOpened"></span>
+                @click.stop.prevent="isOpened = !isOpened"></span>
         </a>
         <ul v-show="isOpened" transition="expand" :style="{height: calcHeight(menu.subMenus)}">
           <li v-for="sub in menu.subMenus">

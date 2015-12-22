@@ -23,6 +23,8 @@
     "text": "sub-menu",
     "link": "/sub-menu",
     "parent": true,
+    "main": "/app/sub-menu/sub-menu.js",
+    "subMain": "/app/sub-menu/sub/main.js",
     "subMenus": {
       "sub-menu-1": {
         "text": "sub-menu-1",

@@ -3,8 +3,14 @@
  */
 'use strict';
 define(function (require) {
+  // 开启Vue调试模式
+  if (DEBUG) {
+    Vue.config.debug = true;
+  }
   var ls = window.localStorage;
+  // 获取配置信息
   window.$config = require('./component/config/config.js');
+  // 获取认证组件
   var auth = require('./component/auth/auth.service.js');
   var App = Vue.extend({});
 
@@ -36,6 +42,7 @@ define(function (require) {
   // 错误信息拦截，如果是401，则跳到登录页
   Ajax.responseError = function(res, xhr) {
     if (xhr.status === 401) {
+      ls.removeItem('token');
       router.go('/login');
     }
   };
@@ -43,7 +50,7 @@ define(function (require) {
   router.map({
     '*': {
       component: {
-        template: 'page not found.'
+        template: '<div>page not found.</div>'
       }
     },
     '/': {
@@ -67,7 +74,7 @@ define(function (require) {
   auth.init();
   // 暴露公共对象
   window.$router = router;
-  // 调用菜单
+  // 调用菜单，并自动添加菜单
   require('./component/menu/menu.js');
   // 启动应用
   router.start(App, '#app');
