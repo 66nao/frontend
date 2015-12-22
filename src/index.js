@@ -3,9 +3,14 @@
  */
 'use strict';
 define(function (require) {
-  Vue.config.debug = true;
+  // 开启Vue调试模式
+  if (DEBUG) {
+    Vue.config.debug = true;
+  }
   var ls = window.localStorage;
+  // 获取配置信息
   window.$config = require('./component/config/config.js');
+  // 获取认证组件
   var auth = require('./component/auth/auth.service.js');
   var App = Vue.extend({});
 
@@ -37,6 +42,7 @@ define(function (require) {
   // 错误信息拦截，如果是401，则跳到登录页
   Ajax.responseError = function(res, xhr) {
     if (xhr.status === 401) {
+      ls.removeItem('token');
       router.go('/login');
     }
   };
@@ -44,17 +50,12 @@ define(function (require) {
   router.map({
     '*': {
       component: {
-        template: 'page not found.'
+        template: '<div>page not found.</div>'
       }
     },
     '/': {
       component: function(resolve) {
         require.async('./app/welcome/welcome.js', resolve);
-      }
-    },
-    '/table': {
-      component: function(resolve) {
-        require.async('./app/table/table.js', resolve);
       }
     },
     '/login': {
@@ -67,50 +68,13 @@ define(function (require) {
         require.async('./app/user/user.js', resolve);
       },
       auth: true
-    },
-    '/chat': {
-      component: function(resolve) {
-        require.async('./app/chat/chat.js', resolve);
-      }
-    },
-    '/form':{
-      component:function(resolve){
-        require.async('./app/form/form.js', resolve);
-      }
-    },
-    '/tooltip': {
-      component: function (resolve) {
-        require.async('./app/tooltip/tooltip.js', resolve);
-      }
-    },
-    '/sub-menu': {
-      component: function(resolve) {
-        require.async('./app/sub-menu/sub-menu.js', resolve);
-      },
-      subRoutes: {
-        '/': {
-          component: function (resolve) {
-            require.async('./app/sub-menu/sub/main.js', resolve);
-          }
-        },
-        '/sub1': {
-          component: function (resolve) {
-            require.async('./app/sub-menu/sub/sub1.js', resolve);
-          }
-        },
-        '/sub2': {
-          component: function (resolve) {
-            require.async('./app/sub-menu/sub/sub2.js', resolve);
-          }
-        }
-      }
     }
   });
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();
   // 暴露公共对象
   window.$router = router;
-  // 调用菜单
+  // 调用菜单，并自动添加菜单
   require('./component/menu/menu.js');
   // 启动应用
   router.start(App, '#app');

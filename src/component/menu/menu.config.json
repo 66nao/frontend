@@ -1,39 +1,40 @@
 {
   "chat": {
-    "require": true,
     "text": "chat",
-    "link": "/chat"
+    "link": "/chat",
+    "main": "/app/chat/chat.js"
   },
   "form": {
-    "require": true,
     "text": "form",
-    "link": "/form"
+    "link": "/form",
+    "main": "/app/form/form.js"
   },
   "table": {
-    "require": true,
     "text": "table",
-    "link": "/table"
+    "link": "/table",
+    "main": "/app/table/table.js"
   },
   "tooltip": {
-    "require": true,
     "text": "tooltip",
-    "link": "/tooltip"
+    "link": "/tooltip",
+    "main": "/app/tooltip/tooltip.js"
   },
   "sub-menu": {
-    "require": true,
     "text": "sub-menu",
     "link": "/sub-menu",
     "parent": true,
+    "main": "/app/sub-menu/sub-menu.js",
+    "subMain": "/app/sub-menu/sub/main.js",
     "subMenus": {
       "sub-menu-1": {
-        "require": true,
         "text": "sub-menu-1",
-        "link": "/sub1"
+        "link": "/sub1",
+        "main": "/app/sub-menu/sub/sub1.js"
       },
       "sub-menu-2": {
-        "require": true,
         "text": "sub-menu-2",
-        "link": "/sub2"
+        "link": "/sub2",
+        "main": "/app/sub-menu/sub/sub2.js"
       }
     }
   }
