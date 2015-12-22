@@ -2,14 +2,68 @@
   <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-  <validator name="validation">
-    <form novalidate v-on:submit.prevent="doSubmit">
-      <input type="text" v-validate:comment="{ minlength: 2, maxlength: 10 }" v-model="comment">
+  <!--<validator name="validation">-->
+    <!--<form novalidate v-on:submit.prevent="doSubmit">-->
+      <!--<input type="text" v-validate:comment="{ minlength: 2, maxlength: 10 }" v-model="comment">-->
+      <!--<div>-->
+        <!--<span v-show="isSubmitted && $validation.comment.minlength">Your comment is too short.</span>-->
+        <!--<span v-show="isSubmitted && $validation.comment.maxlength">Your comment is too long.</span>-->
+      <!--</div>-->
+      <!--<button type="submit">submit</button>-->
+    <!--</form>-->
+  <!--</validator>-->
+
+  <validator name="validation" >
+    <form novalidate >
       <div>
-        <span v-show="isSubmitted && $validation.comment.minlength">Your comment is too short.</span>
-        <span v-show="isSubmitted && $validation.comment.maxlength">Your comment is too long.</span>
+        <label>密码：*</label>
+        <input type="text" v-validate:password="['required']" >
+        <span v-show="$validation.password.required">密码为必填信息，请输入密码！</span>
       </div>
-      <button type="submit">submit</button>
+      <div>
+        <label>姓名：*</label>
+        <input type="text" v-validate:username="['required']" >
+        <span v-show="$validation.username.required">姓名为必填信息，请输入姓名！</span>
+      </div>
+      <div>
+        <label>性别：</label>
+        <input type="radio" value="1" name="sex1" v-model="test">男
+        <input type="radio" value="2"  name="sex1" v-model="test">女
+        <span v-show="test==null">性别为必选信息，请选择性别！</span>
+      </div>
+      <div>
+        <label>出生日期：</label>
+        <input type="text" v-validate:date="['required']" v-model="date">
+        <span v-show="$validation.date.required">出生日期为必选信息，请选择出生日期！</span>
+      </div>
+      <div>
+        <label>利手：</label>
+        <select v-model="hand">
+          <option value="" selected>请选择</option>
+          <option value="1">左利手</option>
+          <option value="2">右利手</option>
+          <option value="3">双利手</option>
+        </select>
+        <span v-show="!hand">利手为必选信息，请选择利手！</span>
+      </div>
+      <div>
+        <label>手机号：*</label>
+        <input type="text" v-validate:phone="['call','required']" >
+        <span v-show="$validation.phone.required">手机号不能为空</span>
+        <span v-show="!$validation.phone.required && $validation.phone.call">请输入正确的手机格式</span>
+      </div>
+      <div>
+        <label>病历号：*</label>
+        <input type="text" v-validate:number="{ required:true,maxlength:20 }">
+        <span v-show="$validation.number.required">病历号不能为空</span>
+        <span v-show="!$validation.number.required && $validation.number.maxlength">病历号长度不能超过20个字符</span>
+      </div>
+      <input type="submit" value="send" >
+
     </form>
   </validator>
+
+
+
+
 </div>
