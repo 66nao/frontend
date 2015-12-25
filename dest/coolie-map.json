@@ -3,7 +3,7 @@
     "main": [
       {
         "src": "../src/index.js",
-        "dest": "/static/js/22b342da39274407.js",
+        "dest": "/static/js/8a50352a472ae744.js",
         "deps": [
           "../src/component/config/config.js",
           "../src/component/auth/auth.service.js",
@@ -17,14 +17,14 @@
     "async": [
       {
         "src": "../src/app/welcome/welcome.js",
-        "dest": "/static/js/async/1.a75dce2da9360bde.js",
+        "dest": "/static/js/async/1.fe50fb754390979a.js",
         "deps": [
           "../src/app/welcome/welcome.html"
         ]
       },
       {
         "src": "../src/app/account/login/login.js",
-        "dest": "/static/js/async/2.342ae9f2f48bdffc.js",
+        "dest": "/static/js/async/2.fef6bac98ac7f456.js",
         "deps": [
           "../src/component/auth/auth.service.js",
           "../src/app/account/login/login.html"
@@ -32,7 +32,7 @@
       },
       {
         "src": "../src/app/user/user.js",
-        "dest": "/static/js/async/3.1956147c9ea3c747.js",
+        "dest": "/static/js/async/3.422648e367f2f206.js",
         "deps": [
           "../src/component/auth/auth.service.js",
           "../src/app/user/user.html"
