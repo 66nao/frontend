@@ -19,6 +19,11 @@
     "text": "tooltip",
     "link": "/tooltip"
   },
+  "tab-panel": {
+    "require": true,
+    "text": "tab-panel",
+    "link": "/tab-panel"
+  },
   "sub-menu": {
     "require": true,
     "text": "sub-menu",

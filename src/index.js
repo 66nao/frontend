@@ -83,6 +83,11 @@ define(function (require) {
         require.async('./app/tooltip/tooltip.js', resolve);
       }
     },
+    '/tab-panel': {
+      component: function (resolve) {
+        require.async('./app/tab-panel/tab-panel.js', resolve);
+      }
+    },
     '/sub-menu': {
       component: function(resolve) {
         require.async('./app/sub-menu/sub-menu.js', resolve);
