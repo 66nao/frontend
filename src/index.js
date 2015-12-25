@@ -70,6 +70,8 @@ define(function (require) {
       auth: true
     }
   });
+  // 添加路由
+  require('./component/router.js')(router);
   // 初始化，根据localStorage中存储的用户信息去设置
   auth.init();
   // 暴露公共对象

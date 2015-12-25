@@ -1,0 +1,36 @@
+/**
+ * 路由信息
+ */
+
+'use strict';
+define(function (require, exports, module) {
+  module.exports = function(router) {
+    router.map({
+      <%for(var i = 0; i < this.menus.length; i++) {%>
+        '<%this.menus[i].link%>': {
+          component: function(resolve) {
+            require.async('<%this.menus[i].main%>', resolve);
+          }
+          <%if(this.menus[i].subMenus) {%>
+            ,subRoutes: {
+              <%if(this.menus[i].parent) {%>
+                '/': {
+                  component: function(resolve) {
+                    require.async('<%this.menus[i].subMain%>', resolve);
+                  }
+                },
+              <%}%>
+              <%for(var j = 0; j < this.menus[i].subMenus.length; j++) {%>
+                '<%this.menus[i].subMenus[j].link%>': {
+                  component: function(resolve) {
+                    require.async('<%this.menus[i].subMenus[j].main%>', resolve);
+                  }
+                }<%if(j !== this.menus[i].subMenus.length-1){%>,<%}%>
+              <%}%>
+            }
+          <%}%>
+        }<%if(i !== this.menus.length-1){%>,<%}%>
+      <%}%>
+    });
+  };
+});

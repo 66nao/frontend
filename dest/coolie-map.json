@@ -3,30 +3,28 @@
     "main": [
       {
         "src": "../src/index.js",
-        "dest": "/static/js/f89becc32948d680.js",
+        "dest": "/static/js/8a50352a472ae744.js",
         "deps": [
-          "../src/component/auth/auth.service.js"
+          "../src/component/config/config.js",
+          "../src/component/auth/auth.service.js",
+          "../src/component/router.js",
+          "../src/component/menu/menu.js",
+          "../src/component/menu/menu.json",
+          "../src/component/menu/menu.html"
         ]
       }
     ],
     "async": [
       {
         "src": "../src/app/welcome/welcome.js",
-        "dest": "/static/js/async/1.bb7880c7012e9758.js",
+        "dest": "/static/js/async/1.fe50fb754390979a.js",
         "deps": [
           "../src/app/welcome/welcome.html"
         ]
       },
       {
-        "src": "../src/app/table/table.js",
-        "dest": "/static/js/async/2.2934a696461c1d5f.js",
-        "deps": [
-          "../src/app/table/table.html"
-        ]
-      },
-      {
         "src": "../src/app/account/login/login.js",
-        "dest": "/static/js/async/3.6d42866f93724377.js",
+        "dest": "/static/js/async/2.fef6bac98ac7f456.js",
         "deps": [
           "../src/component/auth/auth.service.js",
           "../src/app/account/login/login.html"
@@ -34,24 +32,10 @@
       },
       {
         "src": "../src/app/user/user.js",
-        "dest": "/static/js/async/4.0a6f196bf4d11309.js",
+        "dest": "/static/js/async/3.422648e367f2f206.js",
         "deps": [
           "../src/component/auth/auth.service.js",
           "../src/app/user/user.html"
-        ]
-      },
-      {
-        "src": "../src/app/chat/chat.js",
-        "dest": "/static/js/async/5.f0566cf72cb179f7.js",
-        "deps": [
-          "../src/app/chat/chat.html"
-        ]
-      },
-      {
-        "src": "../src/app/form/form.js",
-        "dest": "/static/js/async/6.8eecef296269b9b8.js",
-        "deps": [
-          "../src/app/form/form.html"
         ]
       }
     ],
@@ -69,7 +53,7 @@
     ],
     "css": [
       {
-        "dest": "/static/css/e2aa406a861e3eac.css",
+        "dest": "/static/css/756fd4c7ba688135.css",
         "deps": [
           {
             "src": "../src/assest/css/lib/pure.css",

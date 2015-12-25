@@ -1,0 +1,12 @@
+{
+  "required": {
+    "chat": {},
+    "form": {},
+    "table": {},
+    "sub-menu": {
+      "sub": {
+        "sub-menu-1": {}
+      }
+    }
+  }
+}

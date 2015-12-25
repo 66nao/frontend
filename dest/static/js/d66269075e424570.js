@@ -1,2 +1,0 @@
-/*coolie@1.0.25*/
-coolie.config({base:"./",async:"async/",chunk:"chunk/",debug:!1,cache:!0,version:{"async/1.js":"bb7880c7012e9758","async/2.js":"2934a696461c1d5f","async/3.js":"6d42866f93724377","async/4.js":"0a6f196bf4d11309","async/5.js":"f0566cf72cb179f7","async/6.js":"8eecef296269b9b8"}}).use();
