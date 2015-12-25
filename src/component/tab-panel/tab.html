@@ -1,0 +1,14 @@
+<div class="nav-tabs">
+  <div
+    class="tab"
+    v-for="r in renderData"
+    v-bind:class="{
+        'active': ($index === activeIndex),
+        'disabled': r.disabled
+      }"
+    @click.prevent="click($index, r)"
+    :disabled="r.disabled"
+  >
+    <span>{{r.header}}</span>
+  </div>
+</div>
