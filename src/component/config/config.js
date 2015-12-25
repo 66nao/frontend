@@ -7,7 +7,7 @@ define(function (require, exports, module) {
   var config;
   if (DEBUG) {
     config = {
-      GHOST_SERVER_HOST: 'http://192.168.10.101:9300/',
+      GHOST_SERVER_HOST: 'http://blog.erguotou.me/',
       MOCK_SERVER_HOST: ''
     };
   } else {
