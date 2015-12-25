@@ -43,5 +43,10 @@
         "main": "/app/sub-menu/sub/sub2.js"
       }
     }
+  },
+  "modal":{
+    "text":"modal",
+    "link":"/modal",
+    "main":"/app/modal/modal.js"
   }
 }
