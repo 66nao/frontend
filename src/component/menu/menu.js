@@ -6,7 +6,7 @@
 define(function (require) {
   // 获取菜单配置
   var menuConfig = require('./menu.json', 'json');
-  Vue.component('kf-menu', {
+  Vue.component('menu-set', {
     template: require('./menu.html', 'html'),
     data: function() {
       return {
