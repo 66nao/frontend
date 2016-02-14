@@ -68,6 +68,11 @@ define(function (require) {
         require.async('./app/user/user.js', resolve);
       },
       auth: true
+    },
+    'date': {
+      component: function(resolve) {
+        require.async('./app/date/date.js', resolve);
+      }
     }
   });
   // 添加路由

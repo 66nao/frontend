@@ -3,6 +3,7 @@
     <li><a v-link="{path: '/', exact: true}">Welcome</a></li>
     <li><a v-link="'/login'">Login</a></li>
     <li><a v-link="'/user'">User info</a></li>
+    <li><a v-link="'/date'">date</a></li>
     <li v-for="menu in menus" >
       <template v-if="!menu.subMenus">
         <a v-link="menu.link">{{menu.text}}</a>
