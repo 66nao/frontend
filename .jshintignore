@@ -1,4 +1,0 @@
-node_modules
-gulpfile.js
-*.min.js
-src/static/js/lib/*
